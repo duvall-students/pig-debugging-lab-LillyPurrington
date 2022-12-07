@@ -51,15 +51,20 @@ public class Game {
 		boolean keepGoing = true;
 		printStartRoundMessage(whoseTurn);
 		while(keepGoing){
-			int roll = die.nextInt(7);
+			//Makes the die roll between 0 and 6
+			//int roll = die.nextInt(7);
+			int roll = die.nextInt(6) + 1;
 			String spin = spinner.spin();
 			System.out.println(roll+ " "+ spin);
 			
-			if(roll == LOSER_ROLL){
+			//Makes 1/Grunt not lose all points
+			//if(roll == LOSER_ROLL){
+			
+			if(roll == LOSER_ROLL && !spin.equals(LOSER_SPIN.toUpperCase()) ){
 				System.out.println("Lose a turn.");
 				return 0;
 			}
-			else if(spin == LOSER_SPIN.toUpperCase()){
+			else if(spin.equals(LOSER_SPIN.toUpperCase())){
 				System.out.println("Too bad!  Lose all your points.");
 				whoseTurn.resetScore();
 				return 0;
@@ -75,7 +80,9 @@ public class Game {
 	
 	// True if one of the players has won the game.
 	public boolean winner(){
-		return player1.hasWon() && player2.hasWon();
+		return player1.hasWon() || player2.hasWon();
+		//Makes it so the game only wins when both players win
+		//return player1.hasWon() && player2.hasWon();
 	}
 	
 	/* 
