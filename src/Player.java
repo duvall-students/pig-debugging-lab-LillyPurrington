@@ -6,6 +6,8 @@ public abstract class Player {
 	private final int WIN_SCORE = 100;
 	
 	public Player(String myName){
+		//Didn't set name
+		this.myName = myName;
 		myScore = 0;
 	}
 	
